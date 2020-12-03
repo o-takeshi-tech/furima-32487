@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   
-  validates :email, uniqueness: true
+  validates :nickname, presence: true
+  validates :email, uniqueness: { case_sensitive: true }
   validates_format_of :password, with: PASSWORD_REGEX, message: 'include both letters and numbers' 
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' } do
