@@ -13,25 +13,21 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
 
-  validates :price, numericality: greater_than_or_equal_to: 300
-  
-  with_options numericality: { other_than: 1 }  do
-    validates :category_id
-    validates :day_to_deliver_id
-    validates :delivery_fee_id
-    validates :status_id
-  end
 
   with_options presence: true do
     validates :name
     validates :description
-    validates :price
+    validates :image
+  end
+
+  validates :price, presence: true, numericality: { only_integer: true, message: 'Half-width number'} 
+  validates :price, numericality: { greater_than_or_equal_to: 300, message: 'Out of setting range'}
+
+  with_options presence: true, numericality: { other_than: 1, message: 'Select' }  do
     validates :category_id
     validates :day_to_deliver_id
     validates :delivery_fee_id
-    validates :prefecture_id
     validates :status_id
-    validates :image
   end
 
 end
