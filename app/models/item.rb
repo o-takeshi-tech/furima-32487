@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -29,4 +30,5 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :status_id
   end
+
 end
