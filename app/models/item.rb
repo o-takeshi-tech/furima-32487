@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :days_to_deliver
+  belongs_to :day_to_deliver
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :delivery_fee
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -15,7 +15,7 @@ class Item < ApplicationRecord
 
   with_options numericality: { other_than: 1 }  do
     validates :category_id
-    validates :days_to_deliver_id
+    validates :day_to_deliver_id
     validates :delivery_fee_id
     validates :status_id
   end
@@ -25,7 +25,7 @@ class Item < ApplicationRecord
     validates :description
     validates :price
     validates :category_id
-    validates :days_to_deliver_id
+    validates :day_to_deliver_id
     validates :delivery_fee_id
     validates :prefecture_id
     validates :status_id
