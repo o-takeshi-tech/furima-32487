@@ -13,6 +13,8 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
 
+  validates :price, numericality: greater_than_or_equal_to: 300
+  
   with_options numericality: { other_than: 1 }  do
     validates :category_id
     validates :day_to_deliver_id
@@ -29,6 +31,7 @@ class Item < ApplicationRecord
     validates :delivery_fee_id
     validates :prefecture_id
     validates :status_id
+    validates :image
   end
 
 end
