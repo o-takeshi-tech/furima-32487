@@ -12,5 +12,21 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
 
-  
+  with_options numericality: { other_than: 1 }  do
+    validates :category_id
+    validates :days_to_deliver_id
+    validates :delivery_fee_id
+    validates :status_id
+  end
+
+  with_options presence: true do
+    validates :name
+    validates :description
+    validates :price
+    validates :category_id
+    validates :days_to_deliver_id
+    validates :delivery_fee_id
+    validates :prefecture_id
+    validates :status_id
+  end
 end
