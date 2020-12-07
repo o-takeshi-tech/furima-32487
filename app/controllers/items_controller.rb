@@ -5,20 +5,20 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-  end 
+  end
 
   def create
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
-    else 
+    else
       render :new
-    end 
-  end 
-
+    end
+  end
 
   private
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_to_deliver_id, :price, :image).merge(user_id: current_user.id)
-  end 
+  end
 end
