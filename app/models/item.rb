@@ -26,8 +26,8 @@ class Item < ApplicationRecord
   with_options presence: true, numericality: { other_than: 1, message: 'Select' }  do
     validates :category_id
     validates :day_to_deliver_id
+    validates :prefecture_id
     validates :delivery_fee_id
     validates :status_id
   end
-
 end
