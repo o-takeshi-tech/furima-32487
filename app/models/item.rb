@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   end
 
   validates :price, presence: true, numericality: { only_integer: true, message: 'Half-width number' }
-  validates :price, numericality: { greater_than_or_equal_to: 300, message: 'Out of setting range' }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9,999,999, message: 'Out of setting range' }
   validates :prefecture_id, presence: { message: 'Select' }
 
   with_options presence: true, numericality: { other_than: 1, message: 'Select' } do
