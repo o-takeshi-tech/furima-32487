@@ -39,15 +39,12 @@ class ItemsController < ApplicationController
 
   def move_to_index
     item = Item.find(params[:id])
-    unless user_signed_in? && current_user.id == item.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path unless user_signed_in? && current_user.id == item.user.id
   end
 
   def set_item
     @item = Item.find(params[:id])
-  end 
-
+  end
 
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :status_id, :delivery_fee_id, :prefecture_id, :day_to_deliver_id, :price, :image).merge(user_id: current_user.id)
