@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it 'パスワードが全角だと登録できない' do
-        @user.password = 'ａｂｃｄｅｆ'
+        @user.password = 'ａ１ｒｃ２６ｒ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password include both letters and numbers')
       end
