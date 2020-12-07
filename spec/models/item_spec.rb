@@ -43,13 +43,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
       it 'prefecture_idで配列の1番目(---)が選択されている出品できない' do
-        @item.prefecture_id = nil
-        # include_blank: "--"を使用している為nilを代入
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture Select')
       end
-      it 'dey_to_deliverで配列の1番目(---)が選択されていると出品できない' do
-        @item.day_to_deliver = nil
+      it 'day_to_deliverで配列の1番目(---)が選択されていると出品できない' do
+        @item.day_to_deliver_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Day to deliver Select')
       end
