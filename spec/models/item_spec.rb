@@ -32,25 +32,50 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Category Select')
       end
+      it 'category_idが空の場合は出品できない' do
+        @item.category_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
       it 'status_idで配列の1番目(---)が選択されていると出品できない' do
         @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Status Select')
+      end
+      it 'status_idが空の場合は出品できない' do
+        @item.status_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
       end
       it 'delivery_feeで配列の1番目(---)が選択されていると出品できない' do
         @item.delivery_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
+      it 'delivery_fee_idが空の場合は出品できない' do
+        @item.delivery_fee_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
+      end
       it 'prefecture_idで配列の1番目(---)が選択されている出品できない' do
         @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture Select')
       end
-      it 'day_to_deliverで配列の1番目(---)が選択されていると出品できない' do
+      it 'prefecture_idが空の場合は出品できない' do
+        @item.prefecture_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it 'day_to_deliver_idで配列の1番目(---)が選択されていると出品できない' do
         @item.day_to_deliver_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Day to deliver Select')
+      end
+      it 'day_to_deliver_idが空の場合は出品できない' do
+        @item.day_to_deliver_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Day to deliver can't be blank")
       end
       it 'priceが記載されていないと出品できない' do
         @item.price = nil
@@ -63,7 +88,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'priceが¥299以下の場合は出品できない' do
-        @item.price = 100
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
