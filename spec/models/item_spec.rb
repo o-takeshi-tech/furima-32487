@@ -8,7 +8,7 @@ RSpec.describe Item, type: :model do
   describe '商品出品機能' do
     context '出品がうまくいく場合' do
       it '商品名、商品説明、カテゴリー、商品状態、配送料、都道府県、配送日数、料金全ての値が入力されていると正しく出品ができる' do
-        @item.valid?
+        expect(@item).to be_valid
       end
     end
     context '出品がうまくいかない場合' do
