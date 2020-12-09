@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   def create
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
-      Payjp.api_key = "sk_test_ef9d311f7d4039c649701fb9"
       pay_item
       @order_address.save
       redirect_to root_path
