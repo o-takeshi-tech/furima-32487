@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '商品購入機能' do
     before do
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
       @order_address = FactoryBot.build(:order_address)
+      @order_address.user_id = @user.id
+      @order_address.item_id = @item.id
     end
     context '商品購入がうまくいくとき' do
       it 'カード情報、郵便番号、都道府県、市町村、番地、電話番号が正しく入力されていれば保存できる' do
