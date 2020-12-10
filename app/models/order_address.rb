@@ -8,6 +8,8 @@ class OrderAddress
     validates :city
     validates :address_line
     validates :phone_number, length: { maximum: 11 }
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
   validates :phone_number, numericality: { only_integer: true, message: ' Input only number' }
