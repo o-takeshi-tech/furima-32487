@@ -9,6 +9,10 @@ RSpec.describe OrderAddress, type: :model do
       it 'カード情報、郵便番号、都道府県、市町村、番地、電話番号が正しく入力されていれば保存できる' do
         expect(@order_address).to be_valid
       end
+      it '建物名がなくても保存できる' do
+        @order_address.building = nil
+        expect(@order_address).to be_valid
+      end
     end
     context '商品購入がうまくいかないとき' do
       it 'tokenが空だと保存できない' do
@@ -67,7 +71,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Phone number  Input only number')
       end
       it '携帯番号が全角漢字だと保存できない' do
-        @order_address.phone_number = '一一一一一一一'
+        @order_address.phone_number = '一二三四五六七'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number  Input only number')
       end
