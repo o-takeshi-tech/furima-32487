@@ -29,4 +29,4 @@ function calculation (){
   } );
 }
 
-setInterval(calculation, 1000);
+window.addEventListener("load", calculation);
